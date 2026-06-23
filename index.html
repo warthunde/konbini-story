@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>便利店故事 — 恋爱文字游戏</title>
+
+  <!-- Google Fonts: Noto Serif SC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- 顶部状态栏 -->
+    <div id="status-bar">
+      <div class="status-item" id="affection-status">
+        <span class="status-icon">❤️</span>
+        <span class="status-label">好感度</span>
+        <div class="progress-bar-wrapper">
+          <div class="progress-bar affection-bar" id="affection-bar"></div>
+        </div>
+        <span class="status-value" id="affection-value">0</span>
+      </div>
+
+      <div class="status-item" id="fatigue-status">
+        <span class="status-icon">⚡</span>
+        <span class="status-label">疲劳值</span>
+        <div class="progress-bar-wrapper">
+          <div class="progress-bar fatigue-bar" id="fatigue-bar"></div>
+        </div>
+        <span class="status-value" id="fatigue-value">60</span>
+      </div>
+
+      <div class="status-item" id="trust-status">
+        <span class="status-icon">🔐</span>
+        <span class="status-label">信任值</span>
+        <div class="progress-bar-wrapper">
+          <div class="progress-bar trust-bar" id="trust-bar"></div>
+        </div>
+        <span class="status-value" id="trust-value">0</span>
+      </div>
+
+      <div class="status-item" id="time-status">
+        <span class="status-icon">🕐</span>
+        <span class="status-label">当前时间</span>
+        <span class="time-display" id="time-display">凌晨 01:47</span>
+      </div>
+    </div>
+
+    <!-- 游戏主容器 -->
+    <div id="game-container">
+      <!-- 左：角色立绘区 (Canvas 几何风格) -->
+      <div id="character-area" class="state-normal">
+        <!-- Canvas 立绘由 standee.js 自动注入此处 -->
+
+        <!-- 角色名标签 -->
+        <span id="character-name">山田小姐</span>
+
+        <!-- 胸针揭示 -->
+        <div id="badge-reveal">夜が明けるまで</div>
+      </div>
+
+      <!-- 右：对话与选项区 -->
+      <div id="story-area">
+        <div id="dialogue-box">
+          <p id="dialogue-text"></p>
+          <p id="fatigue-hint">你的眼皮在打架……</p>
+          <p id="trust-hint">『其实我……』</p>
+          <p id="ambient-text"></p>
+        </div>
+        <div id="cigarette-note"></div>
+        <div id="choices-box"></div>
+        <div id="observe-area">
+          <button id="observe-btn" class="observe-btn">🔍 观察</button>
+          <span id="observe-count" class="observe-count"></span>
+        </div>
+        <div id="smoke-area">
+          <button id="smoke-btn" class="smoke-btn">🚬 去后门抽烟</button>
+          <span id="smoke-count" class="smoke-count"></span>
+        </div>
+        <div id="flaw-area">
+          <button id="flaw-btn" class="flaw-btn">⚠ 破绽</button>
+          <span id="flaw-count" class="flaw-count"></span>
+        </div>
+        <div id="perspective-area">
+          <button id="perspective-btn" class="perspective-btn">👁️ 后门视角</button>
+          <span id="perspective-count" class="perspective-count"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="dialogues.js"></script>
+  <script src="standee.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
