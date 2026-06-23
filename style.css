@@ -106,6 +106,32 @@ body {
   white-space: nowrap;
 }
 
+/* ---- 暖色分隔条 ---- */
+#accent-bar {
+  display: none;  /* 桌面端隐藏 */
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #8B2A3A, #C07050, #C42E2E, #C07050, #8B2A3A);
+  opacity: 0.8;
+}
+
+/* ---- 角色小标签 ---- */
+#character-labels {
+  display: none;  /* 桌面端隐藏 */
+}
+
+.char-label {
+  position: absolute;
+  bottom: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 2px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+.char-label-tazan { left: 25%; }
+.char-label-yamada { right: 25%; }
+
 /* ---- 游戏主容器 ---- */
 #game-container {
   display: flex;
@@ -282,6 +308,13 @@ body {
   box-shadow: 0 4px 16px rgba(0,0,0,0.3);
 }
 .choice-btn:active { transform: translateX(2px) scale(0.98); }
+
+/* ---- 底部工具栏 ---- */
+#toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+}
 
 /* 观察按钮 */
 #observe-area { display: flex; align-items: center; gap: 12px; margin-top: 0; }
@@ -558,4 +591,292 @@ body {
   opacity: 0.6;
   margin-top: 16px;
   letter-spacing: 1px;
+}
+
+/* ===================================
+   手机端适配 (屏幕宽度 ≤ 768px)
+   =================================== */
+@media (max-width: 768px) {
+
+  /* body 取消 flex 居中，让内容从顶部开始 */
+  body {
+    display: block;
+    padding: 0;
+    background-attachment: scroll;
+  }
+
+  #app {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---- 状态栏：纵向紧凑双行 ---- */
+  #status-bar {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    padding: 8px 12px;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .status-item {
+    font-size: 11px;
+    gap: 4px;
+  }
+  .status-item:last-child {
+    margin-left: 0;
+  }
+
+  .status-icon {
+    font-size: 13px;
+  }
+
+  .status-label {
+    font-size: 10px;
+    letter-spacing: 0;
+  }
+
+  .progress-bar-wrapper {
+    width: 60px;
+    height: 7px;
+  }
+
+  .status-value {
+    font-size: 11px;
+    min-width: 20px;
+  }
+
+  .time-display {
+    font-size: 12px;
+  }
+
+  /* ---- 游戏容器：纵向堆叠 ---- */
+  #game-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* ---- 立绘区：缩小到屏幕高度的 30% ---- */
+  #character-area {
+    flex: none;
+    width: 100%;
+    height: 30vh;
+    min-height: 180px;
+    position: relative;
+  }
+
+  #character-area canvas {
+    object-fit: contain;
+  }
+
+  #character-name {
+    bottom: 8px;
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  #badge-reveal {
+    bottom: 4px;
+    font-size: 10px;
+  }
+
+  #character-labels {
+    display: block;
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    right: 0;
+  }
+
+  #accent-bar {
+    display: block;
+  }
+
+  /* ---- 对话区：占据剩余空间 ---- */
+  #story-area {
+    flex: 1;
+    width: 100%;
+    padding: 16px 14px;
+    gap: 12px;
+    overflow-y: auto;
+  }
+
+  #dialogue-box {
+    flex: none;
+    min-height: 120px;
+    max-height: 35vh;
+    padding: 16px 14px;
+    border-left-width: 3px;
+    border-radius: 0 8px 8px 0;
+  }
+
+  #dialogue-text {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* ---- 选项按钮：加大触控面积 ---- */
+  #choices-box {
+    gap: 8px;
+    min-height: 0;
+  }
+
+  .choice-btn {
+    font-size: 14px;
+    padding: 12px 16px;
+    border-radius: 10px;
+  }
+
+  /* ---- 底部工具栏：2x2 网格 ---- */
+  #toolbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  #observe-area,
+  #smoke-area,
+  #flaw-area,
+  #perspective-area {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+    margin: 0;
+  }
+
+  /* 四个操作按钮统一样式（窄屏时） */
+  .observe-btn,
+  .smoke-btn,
+  .flaw-btn,
+  .perspective-btn {
+    font-size: 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border-width: 1px;
+    white-space: nowrap;
+  }
+
+  .observe-count,
+  .smoke-count,
+  .flaw-count,
+  .perspective-count {
+    font-size: 10px;
+  }
+
+  /* ---- 烟盒留言：缩小，避免遮挡 ---- */
+  #cigarette-note {
+    width: 150px;
+    top: 50%;
+    right: 4%;
+    font-size: 11px;
+    padding: 10px 12px;
+  }
+
+  /* ---- 环境文字 ---- */
+  #ambient-text {
+    font-size: 10px;
+    bottom: 8px;
+    left: 10px;
+    max-width: 50%;
+  }
+
+  /* ---- 疲劳/信任提示 ---- */
+  #fatigue-hint {
+    font-size: 10px;
+    bottom: 8px;
+    right: 10px;
+  }
+
+  #trust-hint {
+    font-size: 10px;
+    bottom: 26px;
+    right: 10px;
+  }
+
+  /* ---- 破绽提示浮层 ---- */
+  #flaw-hint {
+    font-size: 11px;
+    max-width: 70%;
+    padding: 8px 10px;
+    top: 8px;
+    right: 8px;
+  }
+
+  #observe-detail {
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+
+  /* ---- 结局遮罩 ---- */
+  #ending-overlay h1 {
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+
+  #ending-overlay .ending-countdown {
+    font-size: 48px;
+  }
+
+  #ending-overlay .ending-hint {
+    font-size: 13px;
+  }
+}
+
+/* ===================================
+   超小屏适配 (≤ 400px)
+   =================================== */
+@media (max-width: 400px) {
+  #character-area {
+    height: 25vh;
+    min-height: 150px;
+  }
+
+  #dialogue-box {
+    max-height: 30vh;
+    padding: 12px 10px;
+  }
+
+  #dialogue-text {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .choice-btn {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+
+  .observe-btn,
+  .smoke-btn,
+  .flaw-btn,
+  .perspective-btn {
+    font-size: 11px;
+    padding: 7px 10px;
+  }
+
+  .progress-bar-wrapper {
+    width: 45px;
+    height: 6px;
+  }
+
+  .status-label {
+    display: none;
+  }
+
+  #status-bar {
+    padding: 6px 8px;
+    gap: 6px;
+  }
 }
